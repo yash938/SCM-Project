@@ -28,4 +28,29 @@ public class MainController {
         public String servicePage(Model model){
             return "service"; // This will return the about.html template
         }
+
+           @GetMapping("/navbar")
+        public String navPage(Model model){
+            return "navbar"; // This will return the about.html template
+        }
+          @GetMapping("/home")
+        public String homePage(Model model){
+            return "home"; // This will return the about.html template
+        }
+
+           @GetMapping("/contact")
+        public String contactPage(Model model){
+            return "contact"; // This will return the about.html template
+        }
+
+          @GetMapping("/login")
+        public String loginPage(Model model){
+            return "login"; // This will return the login.html template
+        }
+
+        @GetMapping("/signup")
+        public String signupPage(Model model){
+            return "signup"; // This will return the signup.html template
+        }
+       
 }
