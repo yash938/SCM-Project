@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,11 +24,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private String userId;
+    private int userId;
     private String name;
     private String email;
     private String password;
@@ -40,6 +44,7 @@ public class User {
     private boolean phoneVerified = false;
 
     //how user login like google, github, email, etc.
+    @Enumerated(value=EnumType.STRING)
     private providers provider = providers.SELF; // google, github, email, etc.
     private String providerUserId; // unique id from the provider (like google, github, etc)
     private String providerName; // name of the provider (like google, github, etc.)
