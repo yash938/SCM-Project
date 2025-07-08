@@ -19,30 +19,57 @@
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Signup</h5>
                     <p class="font-normal text-gray-400 dark:text-gray-400">Start managing contact on cloud
                     </p>
-                    <form data-th-action="@{/register}" method="post" th:object="${userForm}" class="mt-5">
+                    <form data-th-action="@{/register}" method="post" th:object="${userForm}" class="mt-5" novalidate>
                         <div class="mb-3">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                             <input type="text" th:field="*{name}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Name......." required />
+
+                            <p class="px-2 py-2 text-red-200"
+                            th:if="${#fields.hasErrors('name')}" 
+                            th:errors="*{name}" 
+                            >User is Required</p>
                           </div>
 
                           <div class="mb-3">
                             <label for="email"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                             <input type="email" th:field="*{email}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="xyz12@gmail.com" required />
+
+                            <p class="px-2 py-2 text-red-200"
+                            th:if="${#fields.hasErrors('email')}" 
+                            th:errors="*{email}" 
+                            >User is Required</p>
                           </div>
 
                           <div class="mb-3">
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                             <input type="password" id="password" th:field="*{password}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Password......." required />
+
+                            <p class="px-2 py-2 text-red-200"
+                            th:if="${#fields.hasErrors('password')}" 
+                            th:errors="*{password}" 
+                            >User is Required</p>
                           </div>
 
                           <div class="mb-3">
                             <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number</label>
                             <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Number......." required />
+
+                            <p class="px-2 py-2 text-red-200"
+                            th:if="${#fields.hasErrors('phoneNumber')}" 
+                            th:errors="*{phoneNumber}" 
+                            >User is Required</p>
                           </div>
                           
                           
-                        <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
-                        <textarea id="about" rows="4" th:field="*{about}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write about yourSelf ..."></textarea>
+                        <div>
+                          <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+                        <textarea id="about" rows="4" th:field="*{about}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write about yourSelf ...">
+                        </textarea>
+                          <p class="px-2 py-2 text-red-200"
+                            th:if="${#fields.hasErrors('about')}" 
+                            th:errors="*{about}" 
+                            >User is Required</p>
+                        </div>
 
                         <div class="flex justify-center space-x-4">
                              

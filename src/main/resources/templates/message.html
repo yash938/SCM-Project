@@ -14,4 +14,6 @@
     <span class="font-medium">Info alert!</span> 
     <span th:text="*{content}"></span>
   </div>
+
+  <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
 </div>

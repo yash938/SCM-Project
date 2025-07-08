@@ -4,6 +4,7 @@ package com.SCM_Project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.SCM_Project.forms.UserForm;
 import com.SCM_Project.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -71,7 +73,15 @@ public class MainController {
         }
 
         @PostMapping("/register")
-        public String signup(@ModelAttribute UserForm userForm,HttpSession session){
+        public String signup(@Valid @ModelAttribute UserForm userForm,BindingResult result,HttpSession session){
+
+
+            if(result.hasErrors()) {
+                // If there are validation errors, return to the signup page with errors
+                System.out.println("Validation errors occurred during registration.");
+                session.setAttribute("message", Message.builder().content("Validation errors occurred").type(MessageType.red).build());
+                return "signup";
+            }
 
             User user = new User();
                 user.setName(userForm.getName());
@@ -90,6 +100,6 @@ public class MainController {
 
              System.out.println("User registered successfully: " + user.getName());
             return "redirect:/signup";
-        }
+        };
        
 }
