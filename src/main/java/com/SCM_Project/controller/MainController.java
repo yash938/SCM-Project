@@ -27,12 +27,9 @@ public class MainController {
     @Autowired
     private UserService userService;
 
-        @GetMapping("/index")
+        @GetMapping("/")
         public String welcome(Model model) {
-            model.addAttribute("name", "yash Sharma");
-            model.addAttribute("message", "Welcome to SCM Project");
-
-            return "index"; // This will return the index.html template
+         return "redirect:/home"; // This will return the welcome.html template
         }
 
         @GetMapping("/about")

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.SCM_Project.entities.User;
@@ -20,8 +21,14 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User saveUser(User user) {
+
+        passwordEncoder.encode(user.getPassword());
+        user.setRoles(List.of("ROLE_USER")); // Default role for new users
         log.info("Saving user: {}", user);
          return  userRepo.save(user);  
     }  
