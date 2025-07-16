@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUserByEmail(String email) {
-      return  userRepo.findByEmail(email);
+      return userRepo.findByEmail(email);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
         User existingUser = getUserById(id).orElseThrow(()->new ResourceNotFoundException("User not found with id: " + id)); // Check if user exists
         existingUser.setName(user.getName());
         existingUser.setEmail(user.getEmail());
-        existingUser.setPassword(user.getPassword());
+        existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         existingUser.setPhoneNumber(user.getPhoneNumber());
         existingUser.setProfilePic(user.getProfilePic());
         existingUser.setAbout(user.getAbout());

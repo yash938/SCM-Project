@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     //user dashboard page
-    @GetMapping("/dashboard")
+   @GetMapping("/dashboard")
     public String userDashboard() {
+        System.out.println("User dashboard");
         return "user/dashboard";
     }
+
 
     //user profile page
     @GetMapping("/profile")
